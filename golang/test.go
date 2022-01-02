@@ -1,4 +1,5 @@
 package main
+
 import (
 	"context"
 	"encoding/json"
@@ -7,7 +8,6 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	
 )
 
 type postJSON struct {
@@ -16,12 +16,9 @@ type postJSON struct {
 
 var ctx = context.Background()
 
-
-
 func main() {
 	r := gin.Default()
 
-	
 	r.POST("/go/sha256", func(c *gin.Context) {
 		println("yes1")
 		jsonData, err := ioutil.ReadAll(c.Request.Body)
@@ -40,12 +37,12 @@ func main() {
 				"message": "Your message lenght must be more than 8 characters!",
 			})
 			println("yes4")
-		}else{
+		} else {
 			c.JSON(http.StatusBadRequest, gin.H{
 				"message": "yess",
 			})
 			println("yes5")
 		}
 	})
-	r.Run(":80") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	r.Run(":3000") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
